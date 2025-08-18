@@ -45,7 +45,7 @@ Values inside the URL.
 def get_item(item_id: int):
     return {"item_id": item_id}
 ```
-- ➡️ Example: /items/5 → {"item_id": 5}
+`➡️ Example: /items/5 → {"item_id": 5}`
 
 ###🔹 Query Parameters
 Values after ? in URL.
@@ -54,7 +54,8 @@ Values after ? in URL.
 def search(q: str, limit: int = 10):
     return {"query": q, "limit": limit}
 ```
-- ➡️ Example: /search/?q=phone&limit=2
+`➡️ Example: /search/?q=phone&limit=2`
+
 ###🔹 Request Body
 Send JSON data with POST/PUT.
 ```python
@@ -68,7 +69,7 @@ class Item(BaseModel):
 def create_item(item: Item):
     return {"item": item}
 ```
-- ➡️ Example: POST → /items/ with JSON body
+`➡️ Example: POST → /items/ with JSON body`
 
 
 # 5️⃣ Dependency Injection
