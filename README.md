@@ -71,7 +71,28 @@ def create_item(item: Item):
 ```
 ➡️ Example: POST → /items/ with JSON body
 
+# 4️⃣ Response Handling
+### 🔹 Custom Response Models
+Ensure structured & validated responses.
+```python
+from typing import List
 
+@app.get("/items/", response_model=List[Item])
+def list_items():
+    return [
+        {"name": "Laptop", "price": 1200.5, "in_stock": True},
+        {"name": "Phone", "price": 800.0, "in_stock": False}
+    ]
+```
+### 🔹 Custom Status Codes
+Control HTTP status code.
+```python
+from fastapi import status
+
+@app.post("/items/", status_code=status.HTTP_201_CREATED)
+def add_item(item: Item):
+    return item
+```  
 # 5️⃣ Dependency Injection
 Re-use common logic (DB, auth, etc.).
 ```python
@@ -89,7 +110,7 @@ def get_users(db=Depends(get_db)):
     return {"db": db, "users": ["Alice", "Bob"]}
 ```
 # 6️⃣ Authentication & Security
-###🔹 OAuth2 (with JWT)
+### 🔹 OAuth2 (with JWT)
 ```python
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends
@@ -103,7 +124,7 @@ def read_profile(token: str = Depends(oauth2_scheme)):
 ✅ Real-world: use python-jose to create/verify JWT tokens.
 
 # 7️⃣ Middleware & Background Tasks
-###🔹 Middleware
+### 🔹 Middleware
 Run logic before/after each request.
 ```python
 @app.middleware("http")
@@ -111,7 +132,7 @@ async def log_requests(request, call_next):
     print("Incoming:", request.url.path)
     return await call_next(request)
 ```
-###🔹 Background Tasks
+### 🔹 Background Tasks
 Run tasks after response is sent.
 ```python
 from fastapi import BackgroundTasks
@@ -155,7 +176,8 @@ async def upload(file: UploadFile = File(...)):
 - Containerize with Docker
 - Deploy on Heroku, AWS, GCP, Azure, or Render
 
-
+---
+---
 📌 Quick Recap
 
 | Feature              | Purpose                          | Example Keyword      |
