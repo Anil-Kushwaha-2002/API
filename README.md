@@ -10,8 +10,8 @@
 - **gRPC →** high-performance, binary-based.
 
 ## HTTP Basics for APIs:
-- **Methods:→** GET (read), POST (create), PUT/PATCH (update), DELETE (remove).
-- **Status Codes:→** 200 OK, 201 Created, 400 Bad Request, 404 Not Found, 500 Server Error.
+- **Methods:→** `GET` (read), `POST` (create), `PUT/PATCH` (update), `DELETE` (remove).
+- **Status Codes:→** `200 OK`, `201 Created`, `400 Bad Request`, `401 Unauthorized`, `404 Not Found`, `500 Internal Server Error`.
 - **Request/Response format:→** JSON is standard.
 
 # 2️⃣ Getting Started with FastAPI
@@ -192,3 +192,70 @@ async def upload(file: UploadFile = File(...)):
 | Advanced Topics      | Async, CORS, WebSockets, Uploads | async/await          |
 | Deployment           | Run & scale API in production    | Docker, Uvicorn      |
 
+---
+---
+
+# REST APIs with Django / Django REST Framework (DRF)
+- Install DRF: `pip install djangorestframework`
+- Add `rest_framework` in `INSTALLED_APPS`.
+### Example: Simple CRUD API
+```python
+# models.py
+from django.db import models
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+
+# serializers.py
+from rest_framework import serializers
+from .models import Book
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+# views.py
+from rest_framework import viewsets
+from .models import Book
+from .serializers import BookSerializer
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+# urls.py
+from rest_framework.routers import DefaultRouter
+from .views import BookViewSet
+router = DefaultRouter()
+router.register(r'books', BookViewSet)
+urlpatterns = router.urls
+```
+👉 Now you have full CRUD: /books/
+
+# Testing APIs
+DRF: APITestCase.
+```python
+from rest_framework.test import APITestCase
+from django.urls import reverse
+
+class BookTests(APITestCase):
+    def test_list_books(self):
+        url = reverse('book-list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+```
+
+---
+---
+# APIs in Odoo
+Controllers provide APIs.
+```python
+from odoo import http
+from odoo.http import request
+
+class BookAPI(http.Controller):
+    @http.route('/api/books', auth='public', methods=['GET'], type='json')
+    def get_books(self):
+        books = request.env['library.book'].search([])
+        return [{"id": b.id, "name": b.name} for b in books]
+```
+Odoo also has XML-RPC APIs for integrations.
