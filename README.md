@@ -47,7 +47,7 @@ def get_item(item_id: int):
 ```
 ➡️ Example: /items/5 → {"item_id": 5}
 
-###🔹 Query Parameters
+##🔹 Query Parameters
 Values after ? in URL.
 ```python
 @app.get("/search/")
