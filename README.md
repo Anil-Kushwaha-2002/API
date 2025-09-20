@@ -14,7 +14,7 @@
 
 ---
 
-###🔹 What is REST?
+### 🔹 What is REST?
 - **REST (Representational State Transfer)** = An **architecture style** for designing APIs.  
 - RESTful APIs follow rules to make communication simple & scalable.  
 - Uses **HTTP methods** for actions.
@@ -148,8 +148,13 @@ def create_item(item: Item):
 | Speed       | Depends                    | Depends                | ⚡ Very fast (async)     |
 | Use Case    | Communication bridge       | Standardized Web APIs  | Build REST APIs quickly |
 ```
-
-
+---
+# ✅ Summary
+- API = General communication interface.
+- RESTful API = Specific type of Web API that follows REST principles.
+- FastAPI = Python framework for building RESTful APIs easily & efficiently.
+---
+---
 # 🚀 API & FastAPI
 # 1️⃣ API Basics (Before FastAPI)
 - API = Application Programming Interface → allows two apps to talk to each other.
