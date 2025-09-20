@@ -1,3 +1,139 @@
+# 🔗 API & RESTful API
+
+## 🔹 What is an API?
+- **API (Application Programming Interface)** = A way for two software systems to talk to each other.  
+- Works like a **bridge** between client (frontend) and server (backend).  
+- Example: Weather app calls weather API → gets temperature data.
+
+---
+
+## 📌 Types of APIs
+- **Web API** → Used over HTTP/HTTPS (e.g., REST, GraphQL).  
+- **Library/API** → Functions provided by libraries/frameworks.  
+- **OS API** → System-level services (e.g., Windows API, POSIX).  
+
+---
+
+## 🔹 What is REST?
+- **REST (Representational State Transfer)** = An **architecture style** for designing APIs.  
+- RESTful APIs follow rules to make communication simple & scalable.  
+- Uses **HTTP methods** for actions.
+
+---
+
+## ⚡ RESTful API Principles
+1. **Stateless** → Each request contains all info (no server memory of past requests).  
+2. **Client-Server** → Separation of frontend (client) & backend (server).  
+3. **Uniform Interface** → Consistent way to access resources.  
+4. **Cacheable** → Responses can be cached for speed.  
+5. **Layered System** → Can use load balancers, proxies between client & server.  
+
+---
+
+## 🔑 HTTP Methods in REST
+- **GET** → Retrieve data.  
+- **POST** → Create new data.  
+- **PUT** → Update existing data (replace).  
+- **PATCH** → Update partially.  
+- **DELETE** → Remove data.  
+
+---
+
+## 🛠️ Example REST API (Users)
+
+### URL: `https://api.example.com/users`
+
+```http
+GET /users                 → Get all users
+GET /users/1               → Get user with id=1
+POST /users                → Create new user
+PUT /users/1               → Update user with id=1
+DELETE /users/1            → Delete user with id=1
+```
+✅ Benefits of RESTful APIs
+- 🌍 Platform independent (works on web, mobile, IoT).
+- 📦 Uses lightweight format (JSON).
+- 🚀 Fast & scalable.
+- 🔗 Widely used across industries.
+---
+---
+
+# ⚡ FastAPI
+
+## 🔹 What is FastAPI?
+- FastAPI = Modern, fast (high-performance) **Python web framework** for building APIs.  
+- Built on **Starlette** (for web) + **Pydantic** (for data validation).  
+- Auto-generates **API docs** (Swagger & Redoc).  
+- Async support → super fast 🚀.  
+
+---
+
+## ✅ Features
+- ⚡ Very fast (comparable to Node.js & Go).  
+- 📑 Automatic docs (Swagger UI / ReDoc).  
+- 🔐 Validation using Pydantic models.  
+- 🛠️ Easy async programming with `async`/`await`.  
+- 👨‍💻 Great for microservices, REST APIs, ML model serving.  
+
+---
+
+## 🛠️ Installation
+```bash
+pip install fastapi uvicorn
+```
+## 📌 Basic Example
+```bash
+# main.py
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")  
+def read_root():
+    return {"message": "Hello, FastAPI!"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
+```
+### Run server:
+`uvicorn main:app --reload`
+
+### 🌍 Auto Docs
+- Swagger UI → http://127.0.0.1:8000/docs
+- Redoc → http://127.0.0.1:8000/redoc
+
+### 🔑 Request Body Example
+```bash
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+    in_stock: bool = True
+
+@app.post("/items/")
+def create_item(item: Item):
+    return {"message": "Item created", "item": item}
+```
+
+## ⚡ Common Use Cases
+- REST APIs & Microservices.
+- ML / AI model serving (with TensorFlow, PyTorch, Scikit-Learn).
+- Backend for web/mobile apps.
+- Async event-driven apps.
+
+## ✅ Benefits of FastAPI
+- 🔥 Super fast & easy to learn.
+- 📦 Automatic docs.
+- 🧪 Built-in validation.
+- 🚀 Great async support.
+
+---
+---
 # 🚀 API & FastAPI
 # 1️⃣ API Basics (Before FastAPI)
 - API = Application Programming Interface → allows two apps to talk to each other.
