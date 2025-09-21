@@ -151,25 +151,24 @@ def create_item(item: Item):
 ---
 
 # 🌟 API Evolution: API → RESTful API → FastAPI
-
 ## 🚀 Flow Overview
-
+```
 👨‍💻 Developer writes code  
-   ↓  
+               ↓  
 📄 **Simple API** (local functions)  
    - main.py, utils.py  
    - ❌ No HTTP, ❌ No versioning, ❌ No auto docs  
-   ↓  
+               ↓
 🌐 **RESTful API** (Flask / Django / NodeJS)  
    - app/routes/, app/models/, run.py  
    - ✅ HTTP endpoints, ✅ REST principles, ❌ Async, ❌ Auto docs  
-   ↓  
+               ↓  
 ⚡ **FastAPI** (Python modern framework)  
    - app/api/v1/, models/, schemas/, services/  
    - ✅ Async support, ✅ Auto docs (/docs, /redoc), ✅ Versioning, ✅ Validation  
-   ↓  
+              ↓  
 ☁️ Ready for **Production / Microservices / DevOps workflows**  
-
+```
 ---
 
 ## 📝 Summary Table
@@ -191,53 +190,66 @@ def create_item(item: Item):
 # 📂 FastAPI Project Structure
 ```
 my_fastapi_app/
-│── app/ # Main application folder
-│ │── init.py # Makes "app" a Python package
-│ │── main.py # Entry point (FastAPI app instance)
-│ │── config.py # App settings / environment configs
-│ │── dependencies.py # Common dependencies (auth, DB session)
+│── app/                   # Main application folder
+│ │── init.py              # Makes "app" a Python package
+│ │── main.py              # Entry point (FastAPI app instance)
+│ │── config.py            # App settings / environment configs
+│ │── dependencies.py      # Common dependencies (auth, DB session)
 │ │
-│ ├── api/ # API routes
+│ ├── api/                 # API routes
 │ │ │── init.py
-│ │ │── v1/ # Versioning (v1, v2, etc.)
+│ │ │── v1/                # Versioning (v1, v2, etc.)
 │ │ │ │── init.py
-│ │ │ │── routes_users.py # User endpoints
-│ │ │ │── routes_items.py # Item endpoints
+│ │ │ │── routes_users.py  # User endpoints
+│ │ │ │── routes_items.py  # Item endpoints
 │ │
-│ ├── models/ # Database models
+│ ├── models/              # Database models
 │ │ │── init.py
 │ │ │── user.py
 │ │ │── item.py
 │ │
-│ ├── schemas/ # Pydantic models (data validation)
+│ ├── schemas/            # Pydantic models (data validation)
 │ │ │── init.py
 │ │ │── user.py
 │ │ │── item.py
 │ │
-│ ├── services/ # Business logic
+│ ├── services/           # Business logic
 │ │ │── init.py
 │ │ │── user_service.py
 │ │ │── item_service.py
 │ │
-│ ├── db/ # Database connection & session
+│ ├── db/                  # Database connection & session
 │ │ │── init.py
 │ │ │── database.py
 │ │
-│ ├── utils/ # Utility/helper functions
+│ ├── utils/              # Utility/helper functions
 │ │ │── init.py
 │ │ │── security.py
 │ │ │── email.py
 │
-│── tests/ # Test cases
+│── tests/                # Test cases
 │ │── test_users.py
 │ │── test_items.py
 │
-│── requirements.txt # Python dependencies
-│── .env # Environment variables (secrets, DB URL)
-│── Dockerfile # Container setup
-│── docker-compose.yml # Multi-service setup (DB + API)
-│── README.md # Documentation
+│── requirements.txt     # Python dependencies
+│── .env                 # Environment variables (secrets, DB URL)
+│── Dockerfile           # Container setup
+│── docker-compose.yml   # Multi-service setup (DB + API)
+│── README.md            # Documentation
 ```
+---
+## ✅ Explanation
+- **`main.py`** → Starts the FastAPI app.  
+- **`api/`** → Organizes routes/endpoints (good for versioning).  
+- **`models/`** → SQLAlchemy models (DB structure).  
+- **`schemas/`** → Pydantic models for request/response validation.  
+- **`services/`** → Business logic (functions that talk to DB or perform actions).  
+- **`db/`** → Database session & connection settings.  
+- **`utils/`** → Helper files (security, hashing, email).  
+- **`tests/`** → Unit tests for APIs.  
+- **`requirements.txt`** → All dependencies.  
+- **`.env`** → Environment configs (DB credentials, secrets).  
+
 ---
 ---
 
